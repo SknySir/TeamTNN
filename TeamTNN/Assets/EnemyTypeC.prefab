@@ -93,11 +93,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7382133077401846808}
-  - component: {fileID: 1290208357994356839}
   - component: {fileID: 155665840780218136}
   - component: {fileID: 6103579375907455635}
   - component: {fileID: 7633929029821242152}
   - component: {fileID: -3708129759174214261}
+  - component: {fileID: 756980329213377730}
   m_Layer: 9
   m_Name: EnemyTypeC
   m_TagString: enemy
@@ -121,19 +121,6 @@ Transform:
   - {fileID: 1823748277891296192}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1290208357994356839
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6717101273331697478}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6e86bfd57e443f469bfb7125c0ee991, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 0.1
 --- !u!61 &155665840780218136
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -240,3 +227,16 @@ MonoBehaviour:
   distance: 0
   speed: 0
   chaserMove: {x: 0, y: 0}
+--- !u!114 &756980329213377730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6717101273331697478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e02c2bbca2aca434685ead2fdbceeb2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
