@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -10,11 +11,14 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D rb;
     private Vector2 movement;
     public bool shooting;
+    public bool punchReady;
+    public GameObject fist;
 
     private void Start()
     {
-        moveSpeed = 3.5f;
+        moveSpeed = 10f;
         shooting = false;
+        punchReady = true;
     }
 
     // Update is called once per frame
@@ -24,31 +28,21 @@ public class PlayerController : MonoBehaviour
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
         
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             shooting = true;
         }
 
-        if (Input.GetKeyUp(KeyCode.LeftControl))
+        if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             shooting = false;
         }
-        
-        // focus controls
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            moveSpeed = 1.5f;
+            Punch();
         }
 
-        if (Input.GetKeyUp(KeyCode.LeftShift))
-        {
-            moveSpeed = 3f;
-        }
-        
-        //cursed relic, do not touch or else the spirits may be angry
-        
-        
     }
 
     private void FixedUpdate()
@@ -56,11 +50,30 @@ public class PlayerController : MonoBehaviour
         //also used for movement
         if (shooting == false)
         {
-            rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime); 
+            rb.MovePosition(rb.position + movement * (moveSpeed * Time.fixedDeltaTime)); 
         }
         else
         {
-            transform.Rotate(0.0f, 0.0f, -Input.GetAxis("Horizontal") * moveSpeed); 
+            transform.Rotate(0.0f, 0.0f, -Input.GetAxis("Horizontal") * (moveSpeed * 2)); 
         }
     }
+
+    void Punch()
+    {
+        if (punchReady == true)
+        {
+            GameObject punchFist = Instantiate(fist, transform.position, transform.rotation);
+            Rigidbody2D rb = punchFist.GetComponent<Rigidbody2D>();
+            rb.AddForce(punchFist.transform.up * 10, ForceMode2D.Impulse);
+            StartCoroutine(PunchCooldown());
+            punchReady = false;
+        }
+    }
+    
+    IEnumerator PunchCooldown()
+    {
+        yield return new WaitForSeconds(4);
+        punchReady = true;
+    }
+    
 }

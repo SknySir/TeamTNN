@@ -54,4 +54,5 @@ public class PlayerShooting : MonoBehaviour
         rb.AddForce(bullet.transform.up * 1000, ForceMode2D.Force);
 
     }
+    
 }
