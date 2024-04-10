@@ -15,6 +15,11 @@ public class Player2Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(0.0f, 0.0f, -Input.GetAxis("Horizontal") * moveSpeed); 
+        if (Input.GetKey ("left")) {
+            transform.Rotate(0, 0, 1f);
+        }
+        if (Input.GetKey ("right")) {
+            transform.Rotate(0, 0, -1f);
+        }
     }
 }

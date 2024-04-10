@@ -14,4 +14,9 @@ public class PlayerBullet : MonoBehaviour
         Debug.Log("destory bullet");
         Destroy(gameObject);
     }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        Destroy(gameObject);
+    }
 }

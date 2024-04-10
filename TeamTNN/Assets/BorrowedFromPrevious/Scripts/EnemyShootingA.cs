@@ -28,12 +28,13 @@ public class EnemyShootingA : MonoBehaviour
     private void Start()
     {
         player = GameObject.Find("Player");
-        speed = 5f;
+        speed = 10f;
         bulletForce = 300f;
         foreach (GameObject node in GameObject.FindGameObjectsWithTag("node"))
         {
             moveNodeList.Add(node);
         }
+        moveNodeList.Sort((a,b) => a.name.CompareTo(b.name));
         aggro = false;
         moveListPlacement = moveNodeList.Count-1;
     }
@@ -43,14 +44,14 @@ public class EnemyShootingA : MonoBehaviour
     {
         float curPosY = transform.position.y;
         newVector = (player.transform.position - this.transform.position).normalized;
-        ShootingAction();
+        
 
         playerDisX = Math.Abs(player.transform.position.x - this.transform.position.x);
         playerDisY = Math.Abs(player.transform.position.y - this.transform.position.y);
         
         curPoint = moveNodeList[moveListPlacement];
 
-        if (playerDisX < 1 && playerDisY < 1)
+        if (playerDisX < 5 && playerDisY < 5)
         {
             aggro = true;
         }
@@ -65,12 +66,15 @@ public class EnemyShootingA : MonoBehaviour
             //float angleA = Mathf.Atan2(yDiff, xDiff) Mathf.Rad2Deg;
             //float angleB = Mathf.Atan2(yDiff, xDiff) Mathf.Rad2Deg;
             transform.up = player.transform.position - this.transform.position;
+            ShootingAction();
         }
         else
         {
             NonAggroMove();
         }
 
+
+        
     }
 
 
@@ -104,7 +108,7 @@ public class EnemyShootingA : MonoBehaviour
         
         GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation );
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        rb.AddForce(newVector * (bulletForce*3), ForceMode2D.Force);
+        rb.AddForce(newVector * (bulletForce), ForceMode2D.Force);
     }
 
     IEnumerator ShootingCoroutine()
@@ -120,7 +124,7 @@ public class EnemyShootingA : MonoBehaviour
     void AggroMove()
     {
        
-        rb.MovePosition(Vector2.MoveTowards(this.transform.position, player.transform.position, Time.deltaTime));
+        rb.MovePosition(Vector2.MoveTowards(this.transform.position, player.transform.position, (speed/3) * Time.deltaTime));
     }
 
     void NonAggroMove()
@@ -132,7 +136,7 @@ public class EnemyShootingA : MonoBehaviour
         
         if (this.transform.position != curPoint.transform.position)
         {
-            rb.MovePosition(Vector2.MoveTowards(this.transform.position, curPoint.transform.position, Time.deltaTime));
+            rb.MovePosition(Vector2.MoveTowards(this.transform.position, curPoint.transform.position, speed * Time.deltaTime));
         }
         if (testX == 0 & testY == 0)
         {

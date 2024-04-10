@@ -28,17 +28,17 @@ public class PlayerController : MonoBehaviour
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
         
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             shooting = true;
         }
 
-        if (Input.GetKeyUp(KeyCode.LeftShift))
+        if (Input.GetKeyUp(KeyCode.Space))
         {
             shooting = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.X))
         {
             Punch();
         }
@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
         {
             GameObject punchFist = Instantiate(fist, transform.position, transform.rotation);
             Rigidbody2D rb = punchFist.GetComponent<Rigidbody2D>();
-            rb.AddForce(punchFist.transform.up * 10, ForceMode2D.Impulse);
+            rb.AddForce(punchFist.transform.up * 10000000, ForceMode2D.Impulse);
             StartCoroutine(PunchCooldown());
             punchReady = false;
         }
@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
     
     IEnumerator PunchCooldown()
     {
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(1);
         punchReady = true;
     }
     

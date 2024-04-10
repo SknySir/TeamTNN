@@ -42,6 +42,21 @@ public class PlayerShooting : MonoBehaviour
                 shotDelay += 1;
             }
         }
+        
+        if (Input.GetKey(KeyCode.Alpha7))
+        {
+            if (shotDelay >= 4)
+            {
+                Shoot();
+                shotDelay = 0;
+            }
+
+            else
+            {
+                shotDelay += 1;
+            }
+        }
+        
     }
 
     void Shoot()
