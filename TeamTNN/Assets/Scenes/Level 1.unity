@@ -2359,28 +2359,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 950409506}
-  - component: {fileID: 950409505}
+  - component: {fileID: 950409507}
   m_Layer: 0
-  m_Name: EnemySpawner
+  m_Name: Arcade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &950409505
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 950409504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc5a3172b4ad4664db029d290625c99e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnEnemies: 1
-  enemyPrefab: {fileID: 6717101273331697478, guid: 24b16930085d1924da6f3850fef2d1a6, type: 3}
 --- !u!4 &950409506
 Transform:
   m_ObjectHideFlags: 0
@@ -2396,6 +2382,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &950409507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950409504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d809912e31e8f04498fc7f91a2301f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &961376911 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 606147332961763978, guid: 95d2e095fea899b4fb5bfd83ca5917ba, type: 3}
